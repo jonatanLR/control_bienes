@@ -30,7 +30,8 @@ $(function() {
             {"data": 'id'},
             {"data": 'nombre'},
             {"data": 'dni'},
-            {"data": 'depto'}
+            {"data": 'depto'},
+            {"defaultContent": "<button><i class='fa-solid fa-circle-user'></i></button>"}
         ]
     });
 })

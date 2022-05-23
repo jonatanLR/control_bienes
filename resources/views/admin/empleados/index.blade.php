@@ -17,8 +17,7 @@
                                     <th>Nombre</th>
                                     <th>DNI</th>
                                     <th>Departamento</th>
-                                    {{-- <th>editar</th>
-                                    <th>eliminar</th> --}}
+                                    <th></th>
                                 </tr>
                             </thead>
                             {{-- <tbody>
