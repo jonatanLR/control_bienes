@@ -24,14 +24,20 @@ $(function() {
             }
         },
         // "serverSide": true,
-        "ajax": "datatable/empleados",
-        // ajax: "{{ route('admin.empleados.empleado') }}",
+        // "ajax": "datatable/empleados",
+        ajax: route('admin.datatable.empleados'),
         "columns": [
             {"data": 'id'},
             {"data": 'nombre'},
             {"data": 'dni'},
             {"data": 'depto'},
-            {"defaultContent": "<button><i class='fa-solid fa-circle-user'></i></button>"}
+            {
+                'data': null,
+                'render': function (data, type, row, meta) {
+                   return '<a href="'+route('admin.empleados.edit',data)+'" class="editar btn btn-sm btn-primary border-solid border-2 border-indigo-600 bg-blue-50" title="Editar Empleado"><i class="fa-solid fa-pen-to-square"></i></a>' + ' ' +
+                          '<a href="'+route('admin.empleados.destroy',data)+'" class="eliminar btn btn-sm btn-danger border-solid border-2 bg-red-600" title="Eliminar Empleado"><i class="fa-solid fa-trash-can"></i></a>'
+                }
+            }
         ]
     });
 })
