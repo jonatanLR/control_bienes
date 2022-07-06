@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Empleado;
+use App\Models\Departamento;
+use App\Http\Requests\StoreEmpleadoRequest;
+
+use function GuzzleHttp\Promise\all;
 
 class EmpleadoController extends Controller
 {
@@ -27,7 +31,9 @@ class EmpleadoController extends Controller
     public function create()
     {
         //
-        return view('admin.empleados.create');
+        $deptos = Departamento::all();
+
+        return view('admin.empleados.create', compact('deptos'));
     }
 
     /**
@@ -36,9 +42,18 @@ class EmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmpleadoRequest $request)
     {
-        //
+        $empleado = new Empleado;
+    
+        $empleado->nombre = $request->nombre;
+        $empleado->dni = $request->dni;
+        $empleado->departamento_id = $request->depto;
+        
+        $empleado->save();
+
+        return  redirect()->route('admin.empleados.edit', $empleado)->with('info','El empleado se creo con exito'); 
+
     }
 
     /**
@@ -62,7 +77,9 @@ class EmpleadoController extends Controller
     public function edit(Empleado $empleado)
     {
         //
-        return view('admin.empleados.edit', compact('empleado'));
+        $deptos = Departamento::all();
+
+        return view('admin.empleados.edit', compact('empleado','deptos'));
     }
 
     /**
@@ -72,9 +89,17 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleado $empleado)
+    public function update(StoreEmpleadoRequest $request, Empleado $empleado)
     {
         //
+        // $empleado->update($request->all());
+        // $empleado->nombre = $request->nombre;
+        // $empleado->dni = $request->dni;
+        // $empleado->departamento_id = $request->depto;
+        // $empleado->save();
+
+        // return $request;
+        return redirect()->route('admin.empleados.show',$empleado)->with('info','El empleado se actualizo con exito');
     }
 
     /**
