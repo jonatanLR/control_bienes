@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\Departamento;
 use App\Http\Requests\StoreEmpleadoRequest;
+use Facade\FlareClient\Http\Response;
 
 use function GuzzleHttp\Promise\all;
 
@@ -19,8 +20,9 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        // return view('admin.empleados.index', compact('empleados'));
-        return view('admin.empleados.index');
+        $deptos = Departamento::all();
+        return view('admin.empleados.index', compact('deptos'));
+        // return view('admin.empleados.index');
     }
 
     /**
@@ -51,7 +53,7 @@ class EmpleadoController extends Controller
         $empleado->departamento_id = $request->depto;
         
         $empleado->save();
-
+        // return $request;
         return  redirect()->route('admin.empleados.edit', $empleado)->with('info','El empleado se creo con exito'); 
 
     }
@@ -65,7 +67,8 @@ class EmpleadoController extends Controller
     public function show(Empleado $empleado)
     {
         //
-        return view('admin.empleados.show', compact('empleado'));
+        $deptos = Departamento::all();
+        return view('admin.empleados.show', compact('empleado','deptos'));
     }
 
     /**
@@ -93,10 +96,10 @@ class EmpleadoController extends Controller
     {
         //
         // $empleado->update($request->all());
-        // $empleado->nombre = $request->nombre;
-        // $empleado->dni = $request->dni;
-        // $empleado->departamento_id = $request->depto;
-        // $empleado->save();
+        $empleado->nombre = $request->nombre;
+        $empleado->dni = $request->dni;
+        $empleado->departamento_id = $request->depto;
+        $empleado->save();
 
         // return $request;
         return redirect()->route('admin.empleados.show',$empleado)->with('info','El empleado se actualizo con exito');
@@ -109,7 +112,9 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Empleado $empleado)
-    {
-        //
+    {        
+        $empleado->delete();
+
+        return response('jonatan');
     }
 }

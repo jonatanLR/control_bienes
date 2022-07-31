@@ -8,7 +8,7 @@
       [
         'name' => 'Empleados',
         'route' => route('admin.empleados.index'),
-        'active' => request()->routeIs('admin.empleados.index')
+        'active' => request()->routeIs('admin.empleados.*')
       ],
       [
         'name' => 'Departamentos',

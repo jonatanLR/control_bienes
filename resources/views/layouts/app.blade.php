@@ -38,14 +38,14 @@
     <div class="min-h-screen bg-gray-100">
         @livewire('navigation')
 
-         <!-- Page Heading -->
-         @if (isset($header))
-         <header class="bg-white shadow">
-             <div class="flex justify-between items-center max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
-                 {{ $header }}
-             </div>
-         </header>
-     @endif
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="bg-white shadow">
+                <div class="flex justify-between items-center max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+        @endif
 
         <!-- Page Content -->
         <main>

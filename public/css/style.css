@@ -59,3 +59,17 @@
     max-width: 768px;
 }
 
+.nohover:hover {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #565e64;
+}
+
+
+/* .nohover{
+    pointer-events: none;
+} */
+
+/* #btnCrearEmpleados{
+    pointer-events: none;
+} */
