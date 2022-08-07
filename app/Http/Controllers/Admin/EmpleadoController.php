@@ -8,6 +8,7 @@ use App\Models\Empleado;
 use App\Models\Departamento;
 use App\Http\Requests\StoreEmpleadoRequest;
 use Facade\FlareClient\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 use function GuzzleHttp\Promise\all;
 
@@ -105,16 +106,13 @@ class EmpleadoController extends Controller
         return redirect()->route('admin.empleados.show',$empleado)->with('info','El empleado se actualizo con exito');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Empleado $empleado)
-    {        
+    
+    public function destroy(Request $request, Empleado $empleado)
+    {       
+        // dd($request);
+        // exit;
         $empleado->delete();
 
-        return response('jonatan');
+        return redirect()->route('admin.empleados.index');
     }
 }

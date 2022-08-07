@@ -83,50 +83,12 @@
             </div>
         </div>
     </div> --}}
+    
+    @include('admin.empleados.partials.modalEliminar')
+
     @include('admin.empleados.partials.modalCrear')
 
-    {{-- modal para editar empleado --}}
-    <div class="modal" id="mEditarEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New message </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="formEmpleados">
-                        @csrf
-                        @method('PUT')
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">ID:</label>
-                            <input type="text" class="form-control" id="mid" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="mnombre">
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">DNI:</label>
-                            <input type="text" class="form-control" id="mdni">
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Departamento:</label>
-                            <br />
-                            <select name="mdepto" id="mdepto">
-                                @foreach ($deptos as $depto)
-                                    <option value="{{ $depto->id }}">{{ $depto->nombre }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary nohover" id="btnUpdateEmpleados"
-                        onClick="actualizarEmp()">Actualizar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('admin.empleados.partials.modalEditar')
 
 </x-app-layout>
+
