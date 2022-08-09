@@ -113,6 +113,6 @@ class EmpleadoController extends Controller
         // exit;
         $empleado->delete();
 
-        return redirect()->route('admin.empleados.index');
+        return redirect()->route('admin.empleados.index')->with('msgdelete','El Empleado fue eliminado');
     }
 }

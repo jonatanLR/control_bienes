@@ -34,16 +34,16 @@ $(function () {
       {
         'data': null,
         'render': function (data, type, row, meta) {
-        var dataString = JSON.stringify(data);
-        //  console.log(dataString);
-        // Error: 1. los parametros cuando se incrustan en el retrun se pasa como [object object] y no
-        //           como un objeto json como se ve en la consola.
-        //        2.  Al convertir el objeto a string mediante la funcion JSON.stringify() nos permite
-        //           pasar los datos(el objeto) y poder visualizarlo en el HTML como atributo.
-        //        3. Descubrimiento: la funcion JSON.stringify encierra el string con comillas dobles ("")
-        //        4. Solucion: encerrar los datos con comillas simples 
-        //        5. Observacion: como podemos ver en aqui abajo cuando pasamos cada parte del objeto
-        //           por separado o por cada atributo si funciona bien
+          var dataString = JSON.stringify(data);
+          //  console.log(dataString);
+          // Error: 1. los parametros cuando se incrustan en el retrun se pasa como [object object] y no
+          //           como un objeto json como se ve en la consola.
+          //        2.  Al convertir el objeto a string mediante la funcion JSON.stringify() nos permite
+          //           pasar los datos(el objeto) y poder visualizarlo en el HTML como atributo.
+          //        3. Descubrimiento: la funcion JSON.stringify encierra el string con comillas dobles ("")
+          //        4. Solucion: encerrar los datos con comillas simples 
+          //        5. Observacion: como podemos ver en aqui abajo cuando pasamos cada parte del objeto
+          //           por separado o por cada atributo si funciona bien
           return `<a href="" datos='${dataString}' data-bs-toggle="modal" data-bs-target="#mEditarEmpleado" class="editar btn btn-sm btn-primary border-solid border-2 border-indigo-600 bg-blue-50 pl-1" title="Editar Empleado"><i class="fa-solid fa-pen-to-square"></i></a>
                  <button type="button" id="deleteEmpModal" data-id="${data.id}" data-nombre="${data.nombre}" class="delete btn btn-sm btn-danger border-solid border-2 bg-red-600" title="Eliminar Empleado" data-bs-toggle="modal" data-bs-target="#mEliminarEmpleado"><i class="fa-solid fa-trash-can"></i></button>`;
         }
@@ -51,7 +51,9 @@ $(function () {
     ]
   }); // fin datatable
 
-  
+  setTimeout(function () {
+    $("#msj").fadeOut(1000);
+  }, 7000);
 
 }); //fin function
 
@@ -61,15 +63,13 @@ $('#mEliminarEmpleado').on('show.bs.modal', function (event) {
   var dataStringID = button.data('id');
   var dataStringNombre = button.data('nombre');
 
-  action = $('#formEliminarEmpleados').attr('data-action').slice(0,-1);
-  action+=dataStringID;
+  // obtenemos el data-action del formulario y lequitamos el id con la funcion slice()
+  action = $('#formEliminarEmpleados').attr('data-action').slice(0, -1);
+  // le agregamos el nuevo ID al action
+  action += dataStringID;
+  // le sustituimos el atributo action por el nuevo que se creo
+  $('#formEliminarEmpleados').attr('action', action);
 
-  $('#formEliminarEmpleados').attr('action',action);
-  // $('#titulomodal').html(dataStringID);
-  console.log(action);
- 
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
   var modal = $(this);
   modal.find('.modal-title').text('Eliminar empleado: ' + dataStringID);
   modal.find('.modal-body input[id="nombre"]').val(dataStringNombre);
@@ -78,9 +78,15 @@ $('#mEliminarEmpleado').on('show.bs.modal', function (event) {
 
 
 $('#mEditarEmpleado').on('show.bs.modal', function (event) {
-   var button = $(event.relatedTarget);
-   var datos = button.attr('datos');
-   
-   console.log(datos);
+  var button = $(event.relatedTarget);
+  var datos = button.attr('datos');
+
+  console.log(datos);
 });
+
+// $('#formEliminarEmpleados').submit(function(event) {
+//      event.preventDefault();
+//      console.log("SUBMITTING...");
+//      console.log($(this).attr('action'));
+// });
 
