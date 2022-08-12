@@ -44,20 +44,103 @@ $(function () {
           //        4. Solucion: encerrar los datos con comillas simples 
           //        5. Observacion: como podemos ver en aqui abajo cuando pasamos cada parte del objeto
           //           por separado o por cada atributo si funciona bien
-          return `<a href="" datos='${dataString}' data-bs-toggle="modal" data-bs-target="#mEditarEmpleado" class="editar btn btn-sm btn-primary border-solid border-2 border-indigo-600 bg-blue-50 pl-1" title="Editar Empleado"><i class="fa-solid fa-pen-to-square"></i></a>
+          return `<a href="#" data-datos='${dataString}' data-bs-toggle="modal" data-bs-target="#mEditarEmpleado" class="editar btn btn-sm btn-primary border-solid border-2 border-indigo-600 bg-blue-50 pl-1" title="Editar Empleado"><i class="fa-solid fa-pen-to-square"></i></a>
                  <button type="button" id="deleteEmpModal" data-id="${data.id}" data-nombre="${data.nombre}" class="delete btn btn-sm btn-danger border-solid border-2 bg-red-600" title="Eliminar Empleado" data-bs-toggle="modal" data-bs-target="#mEliminarEmpleado"><i class="fa-solid fa-trash-can"></i></button>`;
         }
       }
     ]
   }); // fin datatable
 
+  // funcion para ucultar el mensaje alert sobre el dataTable
   setTimeout(function () {
     $("#msj").fadeOut(1000);
   }, 7000);
 
+  // funcion para administrar el submit del formulario y hacer la peticion por medio de ajax
+  // Crear Empleados
+  $('#formCrearEmpleados').submit(function (event) {
+    event.preventDefault();
+    
+    var action = $(this).attr('action');
+    var dataform = $(this).serializeArray();
+
+    $.ajax({
+      url: action,
+      method: dataform[1].value,
+      data: dataform,
+    }).done(function (resp) {
+
+      if (resp == 1) {
+        table.ajax.reload();
+        $('#mCrearEmpleado').modal('hide').removeClass('fade');
+
+        //toasd
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+
+        Toast.fire({
+          icon: 'success',
+          title: 'Empleado creado con éxito'
+        })
+
+      }
+
+    });
+  });
+
+  // funcion para administrar el submit del formulario y hacer la peticion por medio de ajax
+  // Editar Empleados
+  $('#formEditarEmpleados').submit(function (event) {
+    event.preventDefault();
+    
+    var action = $(this).attr('action');
+    var dataform = $(this).serializeArray();
+
+    $.ajax({
+      url: action,
+      method: dataform[1].value,
+      data: dataform,
+    }).done(function (resp) {
+      console.log(resp);
+
+      if (resp == 1) {
+        table.ajax.reload();
+        $('#mEditarEmpleado').modal('hide').removeClass('fade');
+
+        // toasd
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        });
+
+        Toast.fire({
+          icon: 'success',
+          title: 'Empleado creado exitosamente'
+        });
+      } // fin if
+    }); // fin ajax-done
+  }); // fin funcion form-submit editar empleado
+
 }); //fin function
 
 // funcion para eliminar empleado manipular el modal y los campos o elementos dentro de este
+// modal-formulario Eliminar empleado
 $('#mEliminarEmpleado').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var dataStringID = button.data('id');
@@ -76,17 +159,24 @@ $('#mEliminarEmpleado').on('show.bs.modal', function (event) {
 
 });
 
-
+// funcion para obtener los datos desde el boton y ponerlos 
+// en los inputs del modal-formulario Editar empleado
 $('#mEditarEmpleado').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
-  var datos = button.attr('datos');
+  var datos = button.data('datos');
 
-  console.log(datos);
+  // obtenemos el data-action del formulario y lequitamos el id con la funcion slice()
+  action = $('#formEditarEmpleados').attr('data-action').slice(0, -1);
+  // le agregamos el nuevo ID al action
+  action += datos.id;
+  // le sustituimos el atributo action por el nuevo que se creo
+  $('#formEditarEmpleados').attr('action', action);
+
+  var modalEdit = $(this);
+  modalEdit.find('.modal-body input[id="id"]').val(datos.id);
+  modalEdit.find('.modal-body input[id="nombre"]').val(datos.nombre);
+  modalEdit.find('.modal-body input[id="dni"]').val(datos.dni);
+  // modalEdit.find('.modal-body select[id="mdepto"] option[text="'+datos.depto+'"]').attr("selected", "selected");
+  var medit = modalEdit.find('.modal-body select[id="depto"] option[value="' + datos.id_depto + '"]').attr("selected", "selected");
 });
-
-// $('#formEliminarEmpleados').submit(function(event) {
-//      event.preventDefault();
-//      console.log("SUBMITTING...");
-//      console.log($(this).attr('action'));
-// });
 

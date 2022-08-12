@@ -15,20 +15,21 @@
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">ID:</label>
-                        <input type="text" class="form-control" id="mid" readonly>
+                        <input type="text" class="form-control" id="id" name="id" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="mnombre">
+                        <input type="text" class="form-control" id="nombre" name="nombre">
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">DNI:</label>
-                        <input type="text" class="form-control" id="mdni">
+                        <input type="text" class="form-control" id="dni" name="dni">
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Departamento:</label>
                         <br />
-                        <select name="mdepto" id="mdepto">
+                        <select class="form-select" name="depto" id="depto">
+                            {{-- comment: la variable deptos vienes desde el controlador-funcion index --}}
                             @foreach ($deptos as $depto)
                                 <option value="{{ $depto->id }}">{{ $depto->nombre }}</option>
                             @endforeach
@@ -40,7 +41,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary bg-secondary"
                         data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary bg-danger">Eliminar</button>
+                    <button type="submit" class="btn btn-primary bg-info">Guardar</button>
                 </div>
             </form>
         </div>

@@ -4,8 +4,8 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Empleados') }}
         </h2>
-        <a href="{{ route('admin.empleados.create') }}" class="btn-crear-empleados"><i class="fa-regular fa-square-plus"></i> Crear Empleado</a>
-        {{-- <a href="#" class="btn-crear-empleados" data-bs-toggle="modal" data-bs-target="#mCrearEmpleado"><i class="fa-regular fa-square-plus"></i> Crear Empleado</a> --}}
+        {{-- <a href="{{ route('admin.empleados.create') }}" class="btn-crear-empleados"><i class="fa-regular fa-square-plus"></i> Crear Empleado</a> --}}
+        <a href="#" class="btn-crear-empleados" data-bs-toggle="modal" data-bs-target="#mCrearEmpleado"><i class="fa-regular fa-square-plus"></i> Crear Empleado</a>
     </x-slot>
 
     <div class="py-8">
