@@ -12,8 +12,8 @@
       ],
       [
         'name' => 'Departamentos',
-        'route' => '#',//route('departameto'),
-        'active' => false,//request()->routeIs('home')
+        'route' => route('admin.departamentos.index'),
+        'active' => request()->routeIs('admin.departamentos.*')
       ],
       [
         'name' => 'Articulos',

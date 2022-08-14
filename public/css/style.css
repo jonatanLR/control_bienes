@@ -35,7 +35,7 @@
     color: #009879;
 }
 
-//estilo para el div del datatable que aparece muy pegado a la parte de arriba
+/* //estilo para el div del datatable que aparece muy pegado a la parte de arriba */
 .dataTables_wrapper   .dataTables_filter{
     padding: 1rem;
 }
@@ -54,7 +54,21 @@
     border-radius: 0.25rem;
 }
 
-// estilo para div que se encuentra en admin.empleados.create
+.btn-crear-deptos{
+    background:#7dd3fc;
+	color:#fff;
+	display:inline-block;
+	font-size:1em;
+	margin:4px;
+	padding:6px 0;
+	text-align:center;
+	width:200px;
+	text-decoration:none;
+	box-shadow:0px 1.5px 0px #373c3c;
+    border-radius: 0.25rem;
+}
+
+/* // estilo para div que se encuentra en admin.empleados.create */
 .maxW3xl{
     max-width: 768px;
 }

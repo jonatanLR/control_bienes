@@ -27,7 +27,7 @@ $(function () {
     // "ajax": "datatable/empleados",
     ajax: route('admin.datatable.empleados'),
     "columns": [
-      { "data": 'id' },
+      { "data": 'id', class: 'text-center' },
       { "data": 'nombre' },
       { "data": 'dni' },
       { "data": 'depto' },
@@ -50,7 +50,7 @@ $(function () {
       }
     ]
   }); // fin datatable
-
+  
   // funcion para ucultar el mensaje alert sobre el dataTable
   setTimeout(function () {
     $("#msj").fadeOut(1000);

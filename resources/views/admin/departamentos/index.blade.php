@@ -1,27 +1,24 @@
 <x-app-layout>
-    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Empleados') }}
+            {{ __('Departamentos') }}
         </h2>
         {{-- <a href="{{ route('admin.empleados.create') }}" class="btn-crear-empleados"><i class="fa-regular fa-square-plus"></i> Crear Empleado</a> --}}
-        <a href="#" class="btn-crear-empleados" data-bs-toggle="modal" data-bs-target="#mCrearEmpleado"><i class="fa-regular fa-square-plus"></i> Crear Empleado</a>
+        <a href="#" class="btn-crear-deptos" data-bs-toggle="modal" data-bs-target="#mCrearDepto"><i class="fa-regular fa-square-plus"></i> Crear Departamento</a>
     </x-slot>
 
     <div class="py-8">
         
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @include('admin.empleados.partials.msjEmpleados')
+            @include('admin.departamentos.partials.msjDepartamentos')
             <div class="bg-white shadow-xl sm:rounded-lg p-2">
                 {{-- <div class="card">
                     <div class="card-body"> --}}
-                <table class="table table-striped" id="empleados">
+                <table class="table table-striped" id="deptos">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
-                            <th>DNI</th>
-                            <th>Departamento</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -44,15 +41,13 @@
         </div>
     </div>
 
-    
-    @include('admin.empleados.partials.modalEliminar')
+    @include('admin.departamentos.partials.modalCrear')
+    @include('admin.departamentos.partials.modalEliminar')
 
-    @include('admin.empleados.partials.modalCrear')
-
-    @include('admin.empleados.partials.modalEditar')
+    @include('admin.departamentos.partials.modalEditar')
 
     <x-slot name="scripts">
-        <script src="{{ asset('js/funciones/Empleado.js') }}"></script>
+        <script src="{{ asset('js/funciones/Departamento.js') }}"></script>
     </x-slot>
 
 </x-app-layout>

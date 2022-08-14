@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
@@ -12,9 +12,9 @@
 
     {{-- Boostrap and css:js --}}
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
-    <link rel="stylesheet" href="{{ asset('css/boopstrap.min.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/boopstrap.min.css') }}">
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css"> --}}
-    
+
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}">
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css"> --}}
@@ -71,7 +71,11 @@
     <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('js/responsive.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('js/funcionesjquery.js') }}"></script>
+    {{-- <script src="{{ asset('js/funcionesEmpleados.js') }}"></script> --}}
+    <!-- Page Heading -->
+    @if (isset($scripts))
+        {{ $scripts }}
+    @endif
 
 </body>
 

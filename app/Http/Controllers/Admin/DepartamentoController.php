@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDeptoRequest;
 use App\Models\Departamento;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.departamentos.index');
     }
 
     /**
@@ -34,9 +35,17 @@ class DepartamentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDeptoRequest $request)
     {
         //
+        $depto = Departamento::create($request->all());
+        if ($depto) {
+            $resp = 1;
+        }
+        // $depto = new Departamento();
+        // $depto->nombre = $request->nombre;
+        // $rdepto = $depto->save();
+        return response($resp);
     }
 
     /**
@@ -68,9 +77,13 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreDeptoRequest $request,Departamento $depto)
     {
         //
+        $depto->nombre = $request->nombre;
+        $val_depto = $depto->save();
+
+        return response($val_depto);
     }
 
     /**
@@ -79,14 +92,12 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($depto)
     {
-        //
+        $deptof = Departamento::find($depto);
+
+        $deptof->delete();
+        return redirect()->route('admin.departamentos.index')->with('msgdelete', 'El departamento fue eliminado');
     }
 
-    public function deptos(){
-        $departametos = Departamento::all();
-
-        return $departametos->values();
-    }
 }
