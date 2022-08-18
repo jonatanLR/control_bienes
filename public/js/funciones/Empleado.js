@@ -73,6 +73,7 @@ $(function () {
       if (resp == 1) {
         table.ajax.reload();
         $('#mCrearEmpleado').modal('hide').removeClass('fade');
+        $('#formCrearEmpleados')[0].reset();
 
         //toasd
         const Toast = Swal.mixin({

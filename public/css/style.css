@@ -41,7 +41,7 @@
 }
 
 .btn-crear-empleados{
-    background:#7dd3fc;
+    background:#7dfcde;
 	color:#fff;
 	display:inline-block;
 	font-size:1.25em;
@@ -54,7 +54,7 @@
     border-radius: 0.25rem;
 }
 
-.btn-crear-deptos{
+.btn-crear{
     background:#7dd3fc;
 	color:#fff;
 	display:inline-block;

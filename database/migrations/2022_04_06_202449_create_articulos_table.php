@@ -24,9 +24,9 @@ class CreateArticulosTable extends Migration
             $table->string('ubicacion',150)->nullable();
             $table->string('estado',45)->nullable();
             $table->boolean('cargado')->default(false);
-            $table->foreignId('empleado_id')->nullable()->constrained('empleados')->onDelete('set null');
-            $table->foreignId('tipo_articulo_id')->constrained('tipo_articulos');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('empleado_id')->nullable()->constrained('empleados')->onDelete('set null')->onUpdate('set null');
+            $table->foreignId('tipo_articulo_id')->nullable()->constrained('tipo_articulos')->onDelete('cascade')->onUpdate('set null');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null')->onUpdate('set null');
             $table->timestamps();
         });
     }

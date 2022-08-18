@@ -17,7 +17,7 @@ class CreateEmpleadosTable extends Migration
             $table->id();
             $table->string('nombre',100);
             $table->string('dni',15);
-            $table->foreignId('departamento_id')->constrained('departamentos');
+            $table->foreignId('departamento_id')->nullable()->constrained('departamentos')->onDelete('set null')->onUpdate('set null');
             $table->timestamps();
         });
     }

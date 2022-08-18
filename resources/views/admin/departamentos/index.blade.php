@@ -4,7 +4,7 @@
             {{ __('Departamentos') }}
         </h2>
         {{-- <a href="{{ route('admin.empleados.create') }}" class="btn-crear-empleados"><i class="fa-regular fa-square-plus"></i> Crear Empleado</a> --}}
-        <a href="#" class="btn-crear-deptos" data-bs-toggle="modal" data-bs-target="#mCrearDepto"><i class="fa-regular fa-square-plus"></i> Crear Departamento</a>
+        <a href="#" class="btn-crear" data-bs-toggle="modal" data-bs-target="#mCrearDepto"><i class="fa-regular fa-square-plus"></i> Crear Departamento</a>
     </x-slot>
 
     <div class="py-8">

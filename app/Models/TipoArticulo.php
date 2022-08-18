@@ -10,6 +10,8 @@ class TipoArticulo extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nombre'];
+
     public function articulos(){
         return $this->hasMany(Articulo::class);
     }

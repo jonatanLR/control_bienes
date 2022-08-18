@@ -68,6 +68,8 @@ $(function () {
   // Crear Departamentos
   $('#formCrearDeptos').submit(function (event) {
     event.preventDefault();
+    // $('#nombre').val('');
+    console.log($(this));
 
     var action = $(this).attr('action');
     var dataform = $(this).serializeArray();// crea un array con objetos del formulario
@@ -79,6 +81,8 @@ $(function () {
       if (resp == 1) {
         table.ajax.reload();
         $('#mCrearDepto').modal('hide').removeClass('fade');
+        $('#formCrearDeptos')[0].reset();
+        // $('#nombre').val('');
 
         //toasd
         const Toast = Swal.mixin({
